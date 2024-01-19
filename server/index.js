@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://muhammad:helloworld123@jobster.r7jsbjp.mongodb.n
 app.get('/', (req,res)=>{
     res.send('Hello World')
 })
-app.post('/test', (req,res)=>{
+app.get('/test', (req,res)=>{
     Member.find().then((result) => {
         res.json(result)
     }).catch(err => console.log(err))
