@@ -16,7 +16,7 @@ app.get('/', (req,res)=>{
     res.send('Hello World')
 })
 app.get('/test', (req,res)=>{
-    res.send('Hello World')
+    res.send('Hello World test')
 })
 app.get('/getjobs', (req, res) => {
     Jobs.find().then((result) => {
