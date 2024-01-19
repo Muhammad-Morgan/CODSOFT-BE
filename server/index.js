@@ -9,10 +9,15 @@ const loggedInUser = require('./models/loggedUsers')
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+//app.use(express.urlencoded({ extended: false }))
 
 mongoose.connect('mongodb+srv://muhammad:helloworld123@jobster.r7jsbjp.mongodb.net/?retryWrites=true&w=majority')
-mongoose.connection.once('open', () => console.log('Connected to MongoDB Successfuly'))
+app.get('/', (req,res)=>{
+    res.send('Hello World')
+})
+app.post('/test', (req,res)=>{
+    res.send('Hello World')
+})
 app.get('/getjobs', (req, res) => {
     Jobs.find().then((result) => {
         res.json(result)
