@@ -16,9 +16,7 @@ app.get('/', (req,res)=>{
     res.send('Hello World')
 })
 app.get('/test', (req,res)=>{
-    Member.find().then((result) => {
-        res.json(result)
-    }).catch(err => console.log(err))
+    res.send('Hello World')
 })
 app.get('/getjobs', (req, res) => {
     Jobs.find().then((result) => {
