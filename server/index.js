@@ -169,7 +169,7 @@ app.delete('/deletejob',(req,res)=>{
     Jobs.findByIdAndDelete(id).then(()=>res.json('deleted!')).catch(err=>console.log(err))
 })
 app.delete('/logout', (req, res) => {
-    const { id } = req.body
+    const { id } = req.query
     loggedInUser.findByIdAndDelete({ _id: id }).then(() => res.json('deleted!')).catch(err => console.log(err))
 })
 app.listen(5000, () => console.log('Listening on Server 5000'))
