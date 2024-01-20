@@ -166,10 +166,10 @@ app.put('/editmyjob', (req, res) => {
 })
 app.delete('/deletejob',(req,res)=>{
     const {id} = req.query;
-    Jobs.findByIdAndDelete(id).then(()=>console.log('deleted!')).catch(err=>console.log(err))
+    Jobs.findByIdAndDelete(id).then(()=>res.json('deleted!')).catch(err=>console.log(err))
 })
 app.delete('/logout', (req, res) => {
     const { id } = req.body
-    loggedInUser.findByIdAndDelete({ _id: id }).then(() => console.log('deleted!')).catch(err => console.log(err))
+    loggedInUser.findByIdAndDelete({ _id: id }).then(() => res.json('deleted!')).catch(err => console.log(err))
 })
 app.listen(5000, () => console.log('Listening on Server 5000'))
