@@ -11,7 +11,7 @@ const Jobs = require('./Models/job')
 
 const app = express()
 app.use(cors({
-    origin: ['https://jobster-femsa.vercel.app'],
+    origin: ['https://jobster-femsa.vercel.app/'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
