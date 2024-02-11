@@ -11,13 +11,13 @@ const Jobs = require('./Models/job')
 
 const app = express()
 app.use(cors({
-    origin: ['https://jobster-femsa.vercel.app/'],
+    origin: ['https://jobster-femsa.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
 app.use(express.json())
 
-mongoose.connect(process.env.URI)
+mongoose.connect('mongodb+srv://muhammad:helloworld123@jobster.r7jsbjp.mongodb.net/jobster?retryWrites=true&w=majority')
 mongoose.connection.once('open', () => console.log('connected to MongoDB'))
 app.get('/', (req, res) => {
     res.send('Hi, there...')
@@ -28,7 +28,7 @@ app.get('/auth', (req, res) => {
     if (!token) {
         res.json('no token')
     } else {
-        jwt.verify(token, process.env.TOKEN_SECRET, (err, decode) => {
+        jwt.verify(token, 'token%secret%', (err, decode) => {
             if (err) return res.json('not a valid token')
             return res.json({
                 state: 'success',
@@ -116,7 +116,7 @@ app.post('/register', (req, res) => {
                 myID,
                 password: hash
             }).then(() => {
-                const token = jwt.sign({ myID, name, type }, process.env.TOKEN_SECRET, { expiresIn: process.env.EXPIRE_TOKEN })
+                const token = jwt.sign({ myID, name, type }, 'token%secret%', { expiresIn: '1h' })
                 res.json({
                     token,
                     msg: 'registered successfully !',
@@ -137,7 +137,7 @@ app.post('/login', (req, res) => {
             const { name, myID, type } = result
             bcrypt.compare(password, result.password).then((resultCondition) => {
                 if (resultCondition) {
-                    const token = jwt.sign({ name, myID, type }, process.env.TOKEN_SECRET, { expiresIn: process.env.EXPIRE_TOKEN })
+                    const token = jwt.sign({ name, myID, type }, 'token%secret%', { expiresIn: '1h' })
                     res.json({
                         token,
                         msg: 'logged in !',
