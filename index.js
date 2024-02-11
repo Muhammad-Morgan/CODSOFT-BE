@@ -10,7 +10,11 @@ const Members = require('./Models/membersModel')
 const Jobs = require('./Models/job')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: ['https://jobster-femsa.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}))
 app.use(express.json())
 
 mongoose.connect(process.env.URI)
